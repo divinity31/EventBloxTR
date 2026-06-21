@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EventBloxTR - Etkinlik</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="index.html" class="back-link">← Ana Sayfa</a>
+      <h1 id="eventTitle">Yukleniyor...</h1>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="event-detail">
+      <div class="event-info">
+        <div class="prize" id="eventPrize"></div>
+        <div class="date" id="eventDate"></div>
+        <p class="desc" id="eventDesc"></p>
+        <a id="gameLink" class="game-link" href="#" target="_blank" style="display:none;">Roblox Oyununa Git</a>
+        <p class="requirements" id="eventRequirements"></p>
+      </div>
+
+      <div class="slots">
+        <div>
+          <div class="number" id="remainingSlots">-</div>
+          <div class="label">bos yer</div>
+        </div>
+        <div style="flex:1;">
+          <div class="label" id="capacityLabel">Kontenjan</div>
+          <div class="bar-bg">
+            <div class="bar-fill" id="progressFill"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="announcements">
+        <h3>Duyurular</h3>
+        <div id="announcementsList">
+          <p class="empty-text">Henuz duyuru yok.</p>
+        </div>
+      </div>
+
+      <div class="register-section" id="registerSection">
+        <h3>Kaydol</h3>
+        <input type="text" id="robloxInput" placeholder="Roblox kullanici adin" maxlength="30">
+        <input type="text" id="discordInput" placeholder="Discord kullanici adin" maxlength="40">
+        <button id="registerBtn" onclick="register()">Kaydol</button>
+        <div class="message" id="message"></div>
+      </div>
+
+      <div id="fullWarning" class="full-warning" style="display:none;">Kontenjan doldu.</div>
+
+      <div class="participants">
+        <h3>Kayitli Yarismacilar (<span id="playerCount">0</span>/<span id="totalCapacity">-</span>)</h3>
+        <div class="player-list" id="playerBadges"></div>
+      </div>
+    </div>
+  </main>
+
+  <div class="modal" id="successModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('successModal')">&times;</span>
+      <h2>Kaydin Alindi</h2>
+      <p>Etkinlik sahibi, adini belirttigin Discord hesabi uzerinden sizinle iletisime gececektir. Katiliminiz icin tesekkur ederiz.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Ana Sayfa</a>
+      <span>|</span>
+      <a href="index.html" onclick="localStorage.setItem('openModal','privacy');">Gizlilik Politikasi</a>
+      <span>|</span>
+      <a href="index.html" onclick="localStorage.setItem('openModal','faq');">Sikca Sorulan Sorular</a>
+    </div>
+  </footer>
+
+  <script type="module" src="js/event.js"></script>
+</body>
+</html>
