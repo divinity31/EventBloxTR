@@ -4,6 +4,9 @@ import {
   query, orderBy, onSnapshot, serverTimestamp, where
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
+const ADMIN_USERNAME = 'EmilyQueenSlay';
+const ADMIN_PASSWORD = 'EmilyQueenSlay#31TR';
+
 const GAME_NAMES = {
   obby: 'Obby (Parkur)',
   tycoon: 'Tycoon',
@@ -38,36 +41,38 @@ window.adminLogin = async function() {
   const password = document.getElementById('adminPassword').value;
   const msg = document.getElementById('loginMessage');
 
-  if (!username || !password) {
-    msg.textContent = 'Tum alanlari doldurun.';
+  if (username !== ADMIN_USERNAME || password !== ADMIN_PASSWORD) {
+    msg.textContent = 'Hatali kullanici adi veya sifre.';
     msg.className = 'message error';
     return;
   }
 
   try {
-    const adminQuery = query(
+    // Otomatik admin kaydi
+    const existingAdmin = await getDocs(query(
       collection(db, 'admins'),
-      where('username', '==', username),
-      where('password', '==', password)
-    );
-    
-    const snapshot = await getDocs(adminQuery);
-    
-    if (!snapshot.empty) {
-      await updateDoc(doc(db, 'admins', snapshot.docs[0].id), {
+      where('username', '==', ADMIN_USERNAME)
+    ));
+
+    if (existingAdmin.empty) {
+      await addDoc(collection(db, 'admins'), {
+        username: ADMIN_USERNAME,
+        password: ADMIN_PASSWORD,
+        uid: auth.currentUser.uid,
+        createdAt: serverTimestamp()
+      });
+    } else {
+      await updateDoc(doc(db, 'admins', existingAdmin.docs[0].id), {
         uid: auth.currentUser.uid,
         lastLogin: serverTimestamp()
       });
-      
-      isAdmin = true;
-      document.getElementById('loginSection').style.display = 'none';
-      document.getElementById('adminContent').style.display = 'block';
-      document.getElementById('logoutBtn').style.display = 'inline-block';
-      loadEvents();
-    } else {
-      msg.textContent = 'Hatali kullanici adi veya sifre.';
-      msg.className = 'message error';
     }
+
+    isAdmin = true;
+    document.getElementById('loginSection').style.display = 'none';
+    document.getElementById('adminContent').style.display = 'block';
+    document.getElementById('logoutBtn').style.display = 'inline-block';
+    loadEvents();
   } catch (error) {
     msg.textContent = 'Giris hatasi: ' + error.message;
     msg.className = 'message error';
