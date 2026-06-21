@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EventBloxTR - Roblox Etkinlikleri</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>EventBloxTR</h1>
+      <p>Roblox etkinliklerini kesfet, kaydol, kazan</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="events-grid" id="eventsGrid">
+      <div class="loading">
+        <div class="spinner"></div>
+        <p>Etkinlikler yukleniyor...</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="#" onclick="showModal('privacyModal')">Gizlilik Politikasi</a>
+      <span>|</span>
+      <a href="#" onclick="showModal('faqModal')">Sikca Sorulan Sorular</a>
+    </div>
+    <p class="copyright">2026 EventBloxTR</p>
+  </footer>
+
+  <div class="modal" id="privacyModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('privacyModal')">&times;</span>
+      <h2>Gizlilik Politikasi</h2>
+      <p>Toplanan bilgiler (Discord ve Roblox kullanici adlari) yalnizca etkinlik organizasyonu icin kullanilir. Ucuncu taraflarla paylasilmaz. Verileriniz Firebase altyapisinda guvenle saklanir.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="faqModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('faqModal')">&times;</span>
+      <h2>Sikca Sorulan Sorular</h2>
+      <div class="faq-item">
+        <h3>Nasil kaydolabilirim?</h3>
+        <p>Etkinlik sayfasina giderek Roblox ve Discord bilgilerinizle kaydolabilirsiniz.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Kontenjan dolduysa ne yapmaliyim?</h3>
+        <p>Diger aktif etkinlikleri takip edebilirsiniz. Etkinlik yoneticisi kontenjani arttirabilir.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Odulumu nasil alacagim?</h3>
+        <p>Etkinlik sahibi, kayit sirasinda belirttiginiz Discord hesabi uzerinden sizinle iletisime gececektir.</p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
