@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EventBloxTR - Admin Paneli</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Admin Paneli</h1>
+      <div>
+        <a href="index.html" class="btn-outline">Ana Sayfa</a>
+        <button class="btn-outline" onclick="logout()" id="logoutBtn" style="display:none;">Cikis Yap</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="loginSection" class="login-box">
+      <h2>Admin Girisi</h2>
+      <input type="text" id="adminUsername" placeholder="Kullanici adi">
+      <input type="password" id="adminPassword" placeholder="Sifre">
+      <button onclick="adminLogin()">Giris Yap</button>
+      <div class="message" id="loginMessage"></div>
+    </div>
+
+    <div id="adminContent" style="display:none;">
+      <section class="section">
+        <h2>Yeni Etkinlik Olustur</h2>
+        <div class="form-grid">
+          <input type="text" id="eventName" placeholder="Etkinlik Adi *">
+          <select id="eventGame">
+            <option value="">Oyun Turu Sec</option>
+            <option value="obby">Obby (Parkur)</option>
+            <option value="tycoon">Tycoon</option>
+            <option value="simulator">Simulator</option>
+            <option value="horror">Horror</option>
+            <option value="pvp">PvP / Fighting</option>
+            <option value="racing">Racing</option>
+            <option value="custom">Ozel / Diger</option>
+          </select>
+          <input type="url" id="gameLink" placeholder="Roblox Oyun Linki">
+          <input type="text" id="eventPrize" placeholder="Odul * (orn: 1.000 Robux)">
+          <input type="number" id="eventCapacity" placeholder="Kontenjan *" min="1" max="500">
+          <input type="datetime-local" id="eventDate">
+          <textarea id="eventDesc" placeholder="Etkinlik aciklamasi..." rows="3"></textarea>
+          <input type="text" id="eventRequirements" placeholder="Gerekenler (orn: Hizli refleks)">
+        </div>
+        <button onclick="createEvent()">Etkinlik Olustur</button>
+      </section>
+
+      <section class="section">
+        <h2>Etkinlikleri Yonet</h2>
+        <div id="adminEventsList"></div>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>
